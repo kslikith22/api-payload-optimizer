@@ -1,0 +1,36 @@
+{
+  "name": "api-payload-optimizer",
+  "version": "1.0.0",
+  "description": "A production-grade algorithmic optimizer that transparently reduces API JSON payload sizes by up to ~95% using high-density binary serialization and advanced stream compression.",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./src/client.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api",
+    "performance",
+    "optimization",
+    "payload",
+    "binary",
+    "serialization",
+    "compression"
+  ],
+  "author": "kslikith22",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kslikith22/api-payload-optimizer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kslikith22/api-payload-optimizer/issues"
+  },
+  "homepage": "https://github.com/kslikith22/api-payload-optimizer#readme",
+  "dependencies": {
+    "msgpackr": "^1.11.2"
+  }
+}

@@ -22,6 +22,7 @@ npm install api-payload-optimizer
   - `5–50 KB`: Encoded via **High-Density Binary Serialization**.
   - `> 50 KB`: Encoded via **Binary Serialization** and Compressed via **Advanced Stream Compression**.
 - **Extreme Compression**: Reduces highly-complex payloads by **up to ~95%** (e.g. 3.5 MB nested JSON compressed natively down to ~240 KB).
+- **Universal CommonJS & ESM Support**: Automatically works with `import` or `require()`.
 - **Express Middleware Support** built-in.
 - **Universal Fetch Wrapper** unbinds decoding complexities and resolves underlying metadata natively.
 
@@ -29,27 +30,32 @@ npm install api-payload-optimizer
 
 ### Using raw Node.js Server or Express Utilities
 
-On your server, import the `sendOptimized` utility:
+On your server, import the `sendOptimized` utility (supports both ESM and CommonJS):
 
 ```javascript
-import express from "express";
+// ESM
 import { sendOptimized } from "api-payload-optimizer";
+
+// CommonJS
+// const { sendOptimized } = require("api-payload-optimizer");
+```
 
 const app = express();
 
 app.get("/users", (req, res) => {
-  const users = [
-    { id: 1, name: "Alice", active: true },
-    { id: 2, name: "Bob", active: false },
-    // ... potentially thousands of users
-  ];
+const users = [
+{ id: 1, name: "Alice", active: true },
+{ id: 2, name: "Bob", active: false },
+// ... potentially thousands of users
+];
 
-  // sendOptimized automatically compresses depending on the payload magnitude
-  sendOptimized(res, users);
+// sendOptimized automatically compresses depending on the payload magnitude
+sendOptimized(res, users);
 });
 
 app.listen(3000, () => console.log("Server is running"));
-```
+
+````
 
 ### Express Middleware Syntax
 
@@ -68,7 +74,7 @@ app.get("/users", (req, res) => {
   ];
   res.sendOptimized(users);
 });
-```
+````
 
 ### Requesting on Client
 

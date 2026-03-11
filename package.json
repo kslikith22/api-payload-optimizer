@@ -3,12 +3,21 @@
   "version": "1.0.0",
   "description": "A production-grade algorithmic optimizer that transparently reduces API JSON payload sizes by up to ~95% using high-density binary serialization and advanced stream compression.",
   "type": "module",
-  "main": "index.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "exports": {
-    ".": "./index.js",
-    "./client": "./src/client.js"
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./client": {
+      "import": "./dist/src/client.js",
+      "require": "./dist/src/client.cjs"
+    }
   },
   "scripts": {
+    "build": "tsup index.js src/client.js --format cjs,esm --clean",
+    "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -32,5 +41,9 @@
   "homepage": "https://github.com/kslikith22/api-payload-optimizer#readme",
   "dependencies": {
     "msgpackr": "^1.11.2"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
   }
 }

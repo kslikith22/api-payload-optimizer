@@ -22,6 +22,7 @@ In a live React web application fetching **2,000 highly complex nested User obje
 - **Ultra-Lightweight**: Only ~20KB added to your `node_modules`.
 - **Intelligent Encoding**: Automatically determines if short data should stay JSON or if large data should be heavily compressed based on byte size thresholds.
 - **Universal Types**: Native JS Dates, Maps, and Buffers are natively preserved over the network!
+- **Universal CommonJS & ESM Support**: Automatically works with `import` or `require()`.
 - **Drop-in Replacement**: Takes `2 lines` of code on the server and `1 line` of code on the client.
 
 ---
@@ -40,6 +41,8 @@ _(Works with standard `node` and modern bundlers like `vite`, `webpack`, and `es
 
 Attach the middleware globally (or onto specific routes), and then simply replace `res.json(data)` with `res.sendOptimized(data)`.
 
+### Using ESM (`import`)
+
 ```javascript
 import express from "express";
 import { optimizedMiddleware } from "api-payload-optimizer";
@@ -53,6 +56,23 @@ app.get("/api/users", async (req, res) => {
   const hugeDataset = await database.getUsers();
 
   // 2. Transmit heavily compressed data instantly!
+  res.sendOptimized(hugeDataset);
+});
+
+app.listen(3000);
+```
+
+### Using CommonJS (`require`)
+
+```javascript
+const express = require("express");
+const { optimizedMiddleware } = require("api-payload-optimizer");
+
+const app = express();
+app.use(optimizedMiddleware);
+
+app.get("/api/users", async (req, res) => {
+  const hugeDataset = await database.getUsers();
   res.sendOptimized(hugeDataset);
 });
 

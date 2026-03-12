@@ -39,7 +39,7 @@ var import_msgpackr = require("msgpackr");
 var import_util = require("util");
 var import_zlib = __toESM(require("zlib"), 1);
 var compress = (0, import_util.promisify)(import_zlib.default.brotliCompress);
-var packr = new import_msgpackr.Packr({ useRecords: false });
+var packr = new import_msgpackr.Packr({ useRecords: false, maxSharedStructures: 8192 });
 async function encodeData(data) {
   const packed = packr.pack(data);
   const size = packed.byteLength;

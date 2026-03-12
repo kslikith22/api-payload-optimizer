@@ -1,6 +1,6 @@
 {
   "name": "api-payload-optimizer",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A production-grade algorithmic optimizer that transparently reduces API JSON payload sizes by up to ~95% using high-density binary serialization and advanced stream compression.",
   "type": "module",
   "main": "dist/index.cjs",

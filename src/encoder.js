@@ -5,7 +5,7 @@ import zlib from 'zlib';
 const compress = promisify(zlib.brotliCompress);
 // useRecords prevents repetitive object shape definitions spanning massive data
 // maxSharedStructures limits the internal caching memory to prevent memory leaks from long-lived apps
-const packr = new Packr({ useRecords: false, maxSharedStructures: 8160 });
+const packr = new Packr({ useRecords: false, maxSharedStructures: 8000 });
 
 /**
  * Encodes and conditionally compresses the payload.

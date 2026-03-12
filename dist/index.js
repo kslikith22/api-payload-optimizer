@@ -3,7 +3,7 @@ import { Packr } from "msgpackr";
 import { promisify } from "util";
 import zlib from "zlib";
 var compress = promisify(zlib.brotliCompress);
-var packr = new Packr({ useRecords: false, maxSharedStructures: 8192 });
+var packr = new Packr({ useRecords: false, maxSharedStructures: 8e3 });
 async function encodeData(data) {
   const packed = packr.pack(data);
   const size = packed.byteLength;
